@@ -8,6 +8,8 @@ use App\Models\Proveedor;
 
 class VentaController extends Controller
 {
+
+    //Funcion para ventas 
  public function index()
 {
     $user = auth()->user();

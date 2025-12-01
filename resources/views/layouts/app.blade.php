@@ -14,9 +14,10 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="font-sans antialiased bg-black min-h-screen">
 
-    <div class="flex">
+<body class="font-sans antialiased bg-black min-h-screen flex flex-col">
+
+    <div class="flex flex-1">
         <!-- Sidebar -->
         <div class="bg-neutral-950 border-r border-neutral-800 text-white w-64 min-h-screen p-6 flex flex-col">
             <!-- Logo -->
@@ -127,27 +128,33 @@
             </div>
         </div>
 
-       <!-- Contenido principal -->
-<div class="flex-1">
-    <header class="bg-neutral-950 border-b border-neutral-800">
-        <div class="flex justify-between items-center px-6 py-4">
-            <div>
-                <h2 class="text-2xl font-semibold text-white">@yield('title', 'Dashboard')</h2>
-                <p class="text-sm text-gray-500 mt-1">
-                    @if(auth()->user()->rol === 'usuario')
-                        Resumen general de tu cuenta
-                    @else
-                        Resumen general de tu ferretería
-                    @endif
-                </p>
-            </div>
-        </div>
-    </header>
+        <!-- Contenido principal -->
+        <div class="flex flex-col flex-1">
+            <header class="bg-neutral-950 border-b border-neutral-800">
+                <div class="flex justify-between items-center px-6 py-4">
+                    <div>
+                        <h2 class="text-2xl font-semibold text-white">@yield('title', 'Dashboard')</h2>
+                        <p class="text-sm text-gray-500 mt-1">
+                            @if(auth()->user()->rol === 'usuario')
+                                Resumen general de tu cuenta
+                            @else
+                                Resumen general de tu ferretería
+                            @endif
+                        </p>
+                    </div>
+                </div>
+            </header>
 
-    <main class="p-6">
-        @yield('content')
-    </main>
-</div>
+            <main class="p-6 flex-grow">
+                @yield('content')
+            </main>
+
+            <!-- Footer -->
+            <footer class="bg-neutral-950 border-t border-neutral-800 text-gray-400 text-center py-4 mt-auto">
+                <p class="text-sm">&copy; {{ date('Y') }} FerreLuz. Todos los derechos reservados. Desarrollador : Janiel Montero</p>
+            </footer>
+        </div>
+    </div>
 
 </body>
 </html>

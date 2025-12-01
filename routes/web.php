@@ -23,25 +23,25 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
 
 Route::middleware('auth')->group(function () {
 
-    // 🔹 Perfil del usuario
+    //  Perfil del usuario
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    // 🔹 Proveedores
+    //  Proveedores
     Route::get('/proveedores/{proveedor}/asignar', [ProveedorController::class, 'mostrarAsignarForm'])
         ->name('proveedores.asignarForm');
     Route::post('/proveedores/{proveedor}/asignar', [ProveedorController::class, 'asignarUsuario'])
         ->name('proveedores.asignar');
     Route::resource('proveedores', ProveedorController::class);
 
-    // 🔹 Productos (solo admin debería ver esto en vistas)
+    //  Productos (solo admin debería ver esto en vistas)
     Route::resource('productos', ProductoController::class);
 
-    // 🔹 Ventas
+    //  Ventas
     Route::resource('ventas', VentaController::class);
 
-    // 🔹 Comprar productos (para usuarios)
+    //  Comprar productos (para usuarios)
     Route::get('/comprar/{id}', [VentaController::class, 'comprar'])->name('ventas.comprar');
     Route::post('/comprar', [VentaController::class, 'comprarStore'])->name('ventas.comprar.store');
 });
